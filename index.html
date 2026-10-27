@@ -74,6 +74,14 @@
   .t-card{background:#fff;border:1px solid var(--hair);border-radius:12px;padding:12px 13px;}
   .t-card .h{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
   .t-card .n{font-size:13.5px;font-weight:700;line-height:1.45;text-wrap:pretty;}
+  .t-card .gd{margin-top:9px;border-top:1px dashed #E6E1D8;padding-top:8px;}
+  .t-card .gd summary{font-size:11.5px;font-weight:700;color:var(--navy);cursor:pointer;list-style:none;display:flex;align-items:center;gap:5px;}
+  .t-card .gd summary::-webkit-details-marker{display:none;}
+  .t-card .gd summary::after{content:'▼';font-size:8.5px;opacity:.6;}
+  .t-card .gd[open] summary::after{content:'▲';}
+  .t-card .gd .gi{font-size:11.5px;line-height:1.75;color:#3A4048;margin-top:7px;text-wrap:pretty;}
+  .t-card .gd ul{margin:6px 0 0;padding-left:16px;}
+  .t-card .gd li{font-size:11.5px;line-height:1.7;color:var(--mute);margin-top:3px;text-wrap:pretty;}
   .t-card .s{font-size:11.5px;line-height:1.65;color:var(--mute);margin-top:4px;text-wrap:pretty;}
   .tag{flex:0 0 auto;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:3px 7px;border-radius:5px;background:#FBF0EC;color:var(--verm);}
   .tag.ok{background:#EDF3EE;color:#3F6B4F;}
@@ -468,6 +476,50 @@ const DAYS = [
     ]},
 ];
 
+const GUIDE = [
+  ['一蘭', '福岡發跡的豚骨拉麵連鎖，招牌是「味集中カウンター」：一人一格的隔間，用點餐單勾選湯頭濃淡、油、蒜、辣醬、麵的硬度，店員從布簾後送麵，全程不用開口。',
+   ['第一次去：濃淡、油選「基本」，麵選「普通」或「硬」，辣醬 1/2 倍起試','麵吃到一半可加點「替玉」，在桌上的加麵單勾選、按鈴就好','深夜也營業，抵達第一晚拖著行李去不太需要排隊']],
+  ['maejima Hotel 入住', '位在前島、泊港（とまりん）旁的概念旅店，往國際通、美栄橋站都在走路範圍內。',
+   ['Check-in 15:00–24:00、Check-out 10:00；第一晚別拖過 24:00','飯店北邊的泊港一帶有魚市場「泊いゆまち」，早起可以去逛（營業日與時間出發前查）','往返機場走到美栄橋站約 10 分，搭ゆいレール']],
+  ['退稅確認', '國際線與國內線航廈相連，國內線那側的伴手禮店、餐廳比國際線多。',
+   ['2026/11/1 起免稅改退稅制：免稅品要在出境時讓海關確認，先辦再託運','泡盛、辣油、コーレーグース等液體要放託運','ROYCE 石垣島黑糖巧克力等需冷藏的伴手禮，登機前再買']],
+  ['抵達那霸機場', '那霸機場國際線航廈，入境後直接連到ゆいレール那覇空港站。',
+   ['出發前完成 Visit Japan Web，QR Code 先截圖','ゆいレール可直接刷 Suica 等全國 IC 卡','末班車約 23:30，晚班機抵達仍趕得上']],
+  ["HUU'S COFFEE", '國際通轉進小巷 1–2 分的自家烘焙咖啡館，招牌是手沖咖啡、小顆鬆軟甜甜圈（原味、肉桂）和自製義式冰淇淋，名字取自「ふぅ（呼一口氣）」。',
+   ['早餐盤「SUNSHINE PLATE」¥1,550，點飲料時 ¥1,350，供應到 11:00','同一天回訪續杯飲料折 ¥150','冰淇淋口味有ほうじ茶、とうもろこし（玉米）等，可以帶一杯邊走邊吃']],
+  ['波上宮', '琉球八社之首，蓋在面海的琉球石灰岩斷崖上。傳說漁夫在此拾得發光的靈石獻給國王而建社；二戰時燒毀，現在的拜殿、本殿是 1993 年重建。現祭神為伊弉冉尊等，明治以前祀熊野三所權現。',
+   ['參拜禮法：二拜、二拍手、一拜','授與所（御朱印・御守）約 9:00–16:45，記得帶御朱印帳','參拜完往下走到波之上海灘（那霸市區唯一的海灘），從海邊抬頭看懸崖上的神社最好拍','旁邊的護國寺是琉球第一座真言宗寺院，可以順道看看']],
+  ['PARCO CITY', '2019 年開幕的臨海大型購物中心（SAN-A 與 PARCO 合作），約 250 間店，頂樓有面海的露台。',
+   ['大型店（UNIQLO、GU、無印、EDION 等）結帳出示護照；11/1 起改退稅制，商品要能在出境時拿給海關看','SAN-A 食品館可以補沖繩超市零食、調味料','頂樓露台傍晚看夕陽很漂亮，18:45 前要離開趕晚餐']],
+  ['目利きの銀次', '以「產地直送」海鮮為主打的連鎖居酒屋，生魚片、炭烤魚、沖繩當地料理都有，菜單選擇多。',
+   ['已用 Google 預訂 20:00，人數是 3 位，記得確認是否正確','修改或取消用 Google 預訂確認信裡的按鈕','吃完從おもろまち站搭ゆいレール回美栄橋很方便']],
+  ['あさとん食堂', '波之上一帶的日式早餐食堂，以粥、豚汁、烤魚等清爽的朝ごはん定食為主，6:00 就開門。',
+   ['那霸另有一家「あさとん食堂」在泉崎，別走錯，用導航按鈕最保險','網路資料寫可預約、可刷卡，出發前再確認','吃完往那覇バスターミナル走約 15 分，09:00 前要到']],
+  ['宗像堂', '沖繩石窯天然酵母麵包的代表店，店主宗像誉支夫使用從朋友那裡承接的天然酵母，以自己改良的石窯（已是第五代）燒製。酵母培養會用到蘋果、長芋、紅蘿蔔、米飯、黑糖等，代表作是帶微酸、口感Q彈的「プレーン角食パン」。',
+   ['10:00 一開門就到，品項最齊','代表的角食パン可以買一條，帶回飯店或隔天當早餐','店內有咖啡座與戶外露台（咖啡座週三休）；麵包店不定休，看官網月曆確認 11/19','做麵包的人可以留意石窯的位置與麵包的焦色、氣孔']],
+  ['ぽかぽか', '那霸人氣土鍋飯店的 2 號店，點餐後才開始炊土鍋飯；主打沖繩品牌牛「山城牛」，低脂、風味濃。',
+   ['招牌：山城牛焼きすき土鍋御膳 ¥3,410','先用官方 LINE 或電話 098-963-5842 預約 11:30、2 位','土鍋飯要等一段時間，13:20 前吃完才趕得上 13:30 的香氛體驗','鍋底的鍋巴（おこげ）別浪費']],
+  ['FLAVOR DESIGN', '港川外人住宅裡的織品香氛噴霧（fabric mist）專門店，代表體驗是 DIY 調香。',
+   ['已預約 13:30','從約 20 種香味試香條挑 2–3 種，由店員調配，約 30 分、¥4,950','瓶身與瓶蓋顏色可以自己選','液體瓶裝，回程記得放託運或確認容量']],
+  ['港川外人住宅', '1950–60 年代為美軍與家屬蓋的白色平房住宅區，全盛時期超過 300 戶。回歸日本後由沖繩人居住，如今約 30–60 間咖啡店、甜點店、選物店進駐；街道以美國州名命名（NEVADA、KANSAS 等）。',
+   ['找找房子上的州名門牌，很適合拍照','仍有居民居住：別進私人土地、別拍住戶、放低音量','水果塔名店 [oHacorté] 港川本店也在這裡（2 丁目 17-1）','各店營業日不一，想去的店先查 IG']],
+  ['mont-bell', 'AEON MALL 沖縄ライカム 2F 的 mont-bell 直營店。ライカム這個名字來自過去在此的美軍「琉球司令部（Ryukyu Command）」。商場入口有大型水族箱。',
+   ['找沖繩限定 T 恤、小物','11/1 起免稅改退稅制：帶護照，商品要留到出境時讓海關看','商場 3F・4F 的ライカムグルメワールド美食街座位很多']],
+  ['HOKA', '在沖縄ライカム館內的運動／戶外用品店找 HOKA、KEEN。',
+   ['日本尺寸標 cm，先量好自己的腳長','出發前用 HOKA、KEEN 日本官網的門市搜尋確認庫存，或打商場服務台 098-930-0425','同一間店單日購物滿 ¥5,000（未稅）才能退稅；鞋子放隨身，出境時要給海關看','18:30 前要搭上回那霸的巴士']],
+  ['焼肉ぷち', '那霸久茂地的炭火燒肉店，國際通／県庁前一帶，走回飯店也近。',
+   ['已訂 20:20、2 位，變更用訂位確認信的連結','吃完往牧志走約 15 分去りっかりっか湯，最晚 22:15 要離開']],
+  ['りっかりっか湯', '國際通附近的天然溫泉設施，有 10 種浴池、3 種三溫暖（蒸氣、乾式、鹽），還有用琉球紅土牆材料做的岩盤浴區和沖繩料理餐廳。',
+   ['營業 6:00–23:00，最後入場 22:30','大人平日 ¥1,250、假日 ¥1,500','日本泡湯禮儀：先洗身體再入池，毛巾不放進池子','泡完走回 maejima Hotel 約 10 分']],
+  ['旅の終わりの朝ごはん', '藏在國際通旁旅宿「月光荘」一角的早餐店，老闆一個人掌廚，招牌定食就叫「旅の終わりの朝ごはん」，評價常提到飯量足、蜆味噌湯和烤鮭魚。',
+   ['8:00–12:00，週四公休','只收現金','建議用 TableCheck 預約，或一早就去','店面小，拖著行李箱去要先問放哪裡']],
+  ['第一牧志公設市場', '被稱為「那霸的廚房」，2023 年 3 月改建後重新開幕。1F 是鮮魚、肉、乾貨，2F 是食堂。',
+   ['名物「持ち上げ」：在 1F 買魚或肉，交給 2F 食堂代為料理','可以試吃再買；真空包裝的ラフテー（滷三層肉）、島らっきょう漬物適合當伴手禮','營業約 8:00–22:00，各店不一；每月第 4 個週日公休']],
+  ['壺屋', '1682 年琉球王府把各地陶窯集中到這裡，從此成為沖繩陶器「壺屋焼（やちむん）」的產地。約 350 公尺的琉球石灰岩石板路，至今仍有 20 多間窯元。',
+   ['必看：新垣家住宅的登り窯（國家重要文化財）、壺屋唯一現存的荒焼登り窯（南ヌ窯）','路口的「壺屋うふシーサー」白天每 10 分鐘會從嘴裡噴出水霧','小碟、杯子好帶；請店家加強包裝，放隨身行李','石板路拖行李箱不好走，可以先找置物櫃']],
+];
+const guideFor = t => { t = t || ''; const g = GUIDE.find(x => t.includes(x[0])); return g ? { i:g[1], tips:g[2] } : null; };
+
 const CHECK = [
   { n:'護照（效期 6 個月以上）', tag:'必備' },
   { n:'Visit Japan Web QR Code', tag:'出發前' },
@@ -479,6 +531,10 @@ const CHECK = [
   { n:'旅平險保單電子檔', tag:'雲端備份' },
   { n:'御朱印帳', tag:'波上宮' },
   { n:'免稅品收據、隨身大袋子', tag:'退稅' },
+  { n:'日幣現金 ¥30,000（出發前換好）', tag:'必備' },
+  { n:'盥洗用品（牙刷、保養品、隱形眼鏡等）', tag:'必備' },
+  { n:'換洗衣物 4 天份＋睡衣', tag:'必備' },
+  { n:'eSIM（出發前買好、安裝，落地再開啟漫遊）', tag:'出發前' },
 ];
 window.DAYS=DAYS; window.CHECK=CHECK; window.g=g; window.yen=yen; window.RATE=RATE_JPY_TWD;
 
@@ -587,6 +643,7 @@ function renderPlan(){
         ? `<div class="leg">${esc(it.leg)}${state.editing?' ✎':''}</div>`
         : `<div class="t-card"${state.editing?' style="border-style:dashed;"':''}><div class="h"><div class="n">${esc(it.title)}</div>${it.tag?`<div class="tag${ok?' ok':''}">${esc(it.tag)}</div>`:(state.editing?'<div class="tag" style="background:#F1EEE7;color:#8A9099;">編輯</div>':'')}</div>
             ${it.sub?`<div class="s">${esc(it.sub)}</div>`:''}
+            ${(()=>{const gd=guideFor(it.title); return gd?`<details class="gd"><summary>介紹・攻略</summary><div class="gi">${esc(gd.i)}</div><ul>${gd.tips.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></details>`:'';})()}
             ${(it.cost||it.map)?`<div class="pills">${it.cost?`<div class="cost">${esc(it.cost)}</div>`:''}
             ${it.map?`<a class="go" href="${it.map}" target="_blank" rel="noopener">導航 <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 10L10 2M5 2h5v5"/></svg></a>`:''}</div>`:''}
           </div>`}
@@ -608,7 +665,7 @@ let editIdx = null, editKind = 'stop', editTag = '';
 el('editToggle').onclick = () => { state.editing = !state.editing; renderPlan(); };
 el('timeline').onclick = e => {
   if(!state.editing) return;
-  if(e.target.closest('a')) return;
+  if(e.target.closest('a,summary,details')) return;
   const r = e.target.closest('[data-edit]'); if(!r) return;
   openEdit(+r.dataset.edit);
 };
@@ -970,7 +1027,8 @@ const TODOS=[['訂 maejima Hotel（11/17–11/20，3 晚）','Check-in 15:00–2
  ['Visit Japan Web 線上入境申報','官方唯一網址 vjw.digital.go.jp，完全免費、無官方 App。'],
  ['預算：每人 15,000 TWD',
  '機票 5,260（2 人 10,520 平分）已定；住宿每人 2,500（3 晚雙人房總價約 5,000，一晚約 1,670）。扣掉餐飲與交通，購物約剩 2,100，HOKA／KEEN 一雙約 3,200–4,200 TWD 仍略超出，可動用預備金或另列。'],
- ['匯率參考','本頁換算採 1 JPY = 0.21 TWD，可在帳目頁調整。']];
+ ['匯率參考','本頁換算採 1 JPY = 0.21 TWD，可在帳目頁調整。'],
+ ['現金預算 ¥30,000','出發前換 ¥30,000 現金，帳目頁「現金」上限就是 ¥30,000。巴士、旅の終わりの朝ごはん只收現金；其他能刷卡的盡量刷卡，留現金給巴士和小店。']];
 el('todos').innerHTML = TODOS.map(t=>`<div class="rowline" style="display:block;padding:10px 0;">
   <div style="font-size:12px;font-weight:500;">${t[0]}</div>
   <div style="font-size:11px;line-height:1.65;color:${MUTE};margin-top:2px;text-wrap:pretty;">${t[1]}</div></div>`).join('');
