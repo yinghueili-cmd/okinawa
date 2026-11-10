@@ -217,6 +217,22 @@
       <div style="font-size:11.5px;line-height:1.7;color:#4A5A50;margin-top:3px;">ゆいレール 2025/2 調漲後單程 ¥250–390。整趟只搭 5 次（機場→美栄橋、11/18 晚上おもろまち→美栄橋、11/19 早上牧志→おもろまち、11/20 旭橋→美栄橋和美栄橋→機場），11/20 兩趟合計 ¥570 也比一日券便宜，直接刷 Suica 或信用卡感應就好，合計 ¥1,390。</div>
     </div>
     <div class="card" style="padding:6px 14px 10px;" id="fares"></div>
+    <div class="kick">Bus live</div>
+    <a class="card" href="https://www.busnavi-okinawa.com/top/Location" target="_blank" rel="noopener" style="display:block;padding:14px;text-decoration:none;color:inherit;">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="flex:1;">
+          <div style="font-size:14px;font-weight:700;color:var(--navy);">公車現在開到哪？ ↗</div>
+          <div style="font-size:11px;color:var(--dim);margin-top:3px;line-height:1.6;">バスナビ沖縄「バスの現在位置」：選「系統」（路線號碼）就能看每台車現在在哪一站，等車時用。需要網路。</div>
+        </div>
+      </div>
+      <div style="font-size:11px;line-height:1.8;color:#3A4048;margin-top:8px;border-top:1px solid var(--line,#E6E2D8);padding-top:8px;">
+        <b>要選的系統號碼</b><br>
+        11/18 往 PARCO：<b>143</b>（県庁北口 11:12）、<b>385</b>（11:52）<br>
+        11/19 往宗像堂：<b>21</b>、<b>90</b>（おもろまち駅前）<br>
+        11/19 港川 → ライカム：<b>24</b>、<b>110</b>（15:00／15:02）、<b>27</b>（15:16）<br>
+        11/19 回那霸：<b>21</b>、<b>90</b>（比嘉西原 18:37、19:03）
+      </div>
+    </a>
     <div class="kick">Main legs</div>
     <div class="card" style="padding:2px 14px;" id="legs"></div>
     <div class="kick">Route map</div>
@@ -281,7 +297,7 @@
     </div>
     <div class="card" style="padding:4px 14px 8px;">
       <div style="font-size:13px;font-weight:700;padding:11px 0 2px;">完整路線圖與即時位置</div>
-      <a class="rowline" style="display:block;padding:10px 0;text-decoration:none;color:inherit;" href="https://www.busnavi-okinawa.com/" target="_blank" rel="noopener"><div style="font-size:12.5px;font-weight:600;color:var(--navy);">バスナビ沖縄 ↗</div><div style="font-size:10.5px;color:var(--dim);margin-top:2px;">四家公車公司的即時位置、時刻表、轉乘查詢（最實用）</div></a>
+      <a class="rowline" style="display:block;padding:10px 0;text-decoration:none;color:inherit;" href="https://www.busnavi-okinawa.com/" target="_blank" rel="noopener"><div style="font-size:12.5px;font-weight:600;color:var(--navy);">バスナビ沖縄 ↗</div><div style="font-size:10.5px;color:var(--dim);margin-top:2px;">四家公車公司的時刻表、轉乘查詢、站牌接近資訊（即時位置用上面的「公車現在開到哪？」）</div></a>
       <a class="rowline" style="display:block;padding:10px 0;text-decoration:none;color:inherit;" href="https://busmap.info/" target="_blank" rel="noopener"><div style="font-size:12.5px;font-weight:600;color:var(--navy);">バスマップ沖縄 ↗</div><div style="font-size:10.5px;color:var(--dim);margin-top:2px;">沖繩本島全路線的互動地圖，點站牌看有哪些路線經過</div></a>
       <a class="rowline" style="display:block;padding:10px 0;text-decoration:none;color:inherit;" href="https://www.okinawapass.com/wp-content/themes/okinawapass_theme_v1.0.1/pdf/bus-BT.pdf" target="_blank" rel="noopener"><div style="font-size:12.5px;font-weight:600;color:var(--navy);">OKINAWA BUS TRIP GUIDE（PDF）↗</div><div style="font-size:10.5px;color:var(--dim);margin-top:2px;">那霸巴士總站出發的觀光路線指南</div></a>
       <a class="rowline" style="display:block;padding:10px 0;border:none;text-decoration:none;color:inherit;" href="https://www.google.com/maps/dir/?api=1&travelmode=transit" target="_blank" rel="noopener"><div style="font-size:12.5px;font-weight:600;color:var(--navy);">Google Maps 大眾運輸 ↗</div><div style="font-size:10.5px;color:var(--dim);margin-top:2px;">在沖繩也能查公車轉乘；班次以バスナビ為準</div></a>
@@ -326,7 +342,7 @@
       <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
         <div>
           <div style="font-size:13px;font-weight:700;">匯率設定</div>
-          <div style="font-size:10.5px;color:var(--dim);margin-top:2px;">1 JPY → TWD（影響所有換算）</div>
+          <div style="font-size:10.5px;color:var(--dim);margin-top:2px;" id="rateNote">1 JPY → TWD（影響所有換算）</div>
         </div>
         <input class="inp mono" id="rateInput" type="number" step="0.001" inputmode="decimal" style="width:96px;margin:0;text-align:right;padding:10px;font-size:14px;">
       </div>
@@ -949,6 +965,37 @@ state.plan = state.plan || {};
 state.titles = state.titles || {};
 state.editing = false;
 state.rate = state.rate || 0.21;
+state.rateManual = !!state.rateManual;
+// ── 即時資料：天氣（Open-Meteo）、匯率（open.er-api.com）。有網路時更新，沒網路就用上次存的或內建值 ──
+const LIVE = (() => { try { return JSON.parse(localStorage.getItem('okinawa-live') || '{}'); } catch(e){ return {}; } })();
+const saveLive = () => { try { localStorage.setItem('okinawa-live', JSON.stringify(LIVE)); } catch(e){} };
+const liveStamp = () => { const d = new Date(); const p = n => String(n).padStart(2,'0'); return (d.getMonth()+1) + '/' + d.getDate() + ' ' + p(d.getHours()) + ':' + p(d.getMinutes()); };
+const WMO = c => c===0?['☀️','晴']:c<=2?['🌤','晴時多雲']:c===3?['☁️','陰']:c<=48?['🌫','霧']:c<=57?['🌦','毛毛雨']:c<=67?['🌧','雨']:c<=77?['🌨','雪']:c<=82?['🌦','陣雨']:['⛈','雷雨'];
+const TRIP_ISO = ['2026-11-17','2026-11-18','2026-11-19','2026-11-20'];
+function applyWx(){
+  const W = LIVE.wx; if(!W) return;
+  DAYS.forEach((x,i) => { const w = W.days[TRIP_ISO[i]]; if(!w) return;
+    const [ic, desc] = WMO(w.code);
+    x.icon = ic; x.temp = Math.round(w.max) + '°'; x.rain = (w.pop==null ? '—' : w.pop + '%');
+    x.sky = desc + ' · ' + Math.round(w.min) + '–' + Math.round(w.max) + '°C · ' + W.when + ' 預報'; });
+}
+async function refreshLive(){
+  try {
+    const r = await fetch('https://api.open-meteo.com/v1/forecast?latitude=26.2124&longitude=127.6792&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FTokyo&forecast_days=16');
+    if(r.ok){ const j = await r.json(), dd = j.daily, days = {};
+      (dd.time||[]).forEach((t,i) => { if(TRIP_ISO.includes(t)) days[t] = { code:dd.weather_code[i], max:dd.temperature_2m_max[i], min:dd.temperature_2m_min[i], pop:dd.precipitation_probability_max[i] }; });
+      if(Object.keys(days).length){ LIVE.wx = { when: liveStamp(), days }; saveLive(); applyWx(); if(typeof renderPlan==='function') renderPlan(); } }
+  } catch(e){}
+  try {
+    const r = await fetch('https://open.er-api.com/v6/latest/JPY');
+    if(r.ok){ const j = await r.json(); const v = j && j.rates && j.rates.TWD;
+      if(v > 0 && v < 10){ LIVE.fx = { rate: Math.round(v*10000)/10000, when: liveStamp() }; saveLive();
+        if(!state.rateManual){ state.rate = LIVE.fx.rate; save(); }
+        if(typeof renderMoney==='function'){ renderMoney(); updateConv(); } } }
+  } catch(e){}
+}
+applyWx();
+if(!state.rateManual && LIVE.fx) state.rate = LIVE.fx.rate;
 state.cur = 'JPY';
 const genId = () => Date.now().toString(36) + Math.random().toString(36).slice(2,8);
 state.me = state.me || '我';
@@ -959,7 +1006,7 @@ const fmt = (n,c) => (c === 'TWD' ? 'NT$' : '¥') + Math.round(n).toLocaleString
 const items = n => state.plan[n] || DAYS[n-1].items;
 const ownItems = n => { if(!state.plan[n]) state.plan[n] = JSON.parse(JSON.stringify(DAYS[n-1].items)); return state.plan[n]; };
 const dayTitle = n => state.titles[n] || DAYS[n-1].title;
-const save = () => localStorage.setItem(LS, JSON.stringify({ day:state.day, checked:state.checked, expenses:state.expenses, plan:state.plan, titles:state.titles, rate:state.rate, ic:state.ic, shop:state.shop, me:state.me }));
+const save = () => localStorage.setItem(LS, JSON.stringify({ day:state.day, checked:state.checked, expenses:state.expenses, plan:state.plan, titles:state.titles, rate:state.rate, rateManual:state.rateManual, ic:state.ic, shop:state.shop, me:state.me }));
 if(__idFix) save();
 const el = id => document.getElementById(id);
 const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
@@ -1111,7 +1158,7 @@ el('fares').innerHTML = `<div class="rowline" style="padding:10px 0 8px;border-c
   <div class="mono" style="flex:0 0 60px;text-align:right;font-size:11.5px;color:${DIM};">${f[2]}</div>
   <div style="flex:0 0 58px;text-align:right;font-size:10.5px;font-weight:700;color:${f[4]};">${f[3]}</div></div>`).join('');
 
-const LEGS=[['D1','那霸機場 → 美栄橋（一蘭／飯店）','ゆいレール · 約 14 分','¥320'],['D2','県庁北口 → PARCO CITY → 天久 → おもろまち → 美栄橋','巴士 143／385 · ゆいレール','約 ¥850'],['D3','牧志 → おもろまち → 宗像堂 →（徒步）港川 → ライカム → 那霸','ゆいレール 1 站 → 巴士 21／90 → 計程車 → 徒步 → 24／110／27 → 21／90','約 ¥1,700'],['D4','美栄橋 → 那霸機場','ゆいレール · 約 14 分','¥320']];
+const LEGS=[['D1','那霸機場 → 美栄橋（一蘭／飯店）','ゆいレール · 約 14 分','¥320'],['D2','県庁北口 → PARCO CITY → 城間（マンガ倉庫）→ 天久 → おもろまち → 美栄橋','巴士 143／385 · ゆいレール','約 ¥850'],['D3','牧志 → おもろまち → 宗像堂 →（徒步）港川 → ライカム → 那霸','ゆいレール 1 站 → 巴士 21／90 → 計程車 → 徒步 → 24／110／27 → 21／90','約 ¥1,700'],['D4','美栄橋 → 那霸機場','ゆいレール · 約 14 分','¥320']];
 el('legs').innerHTML = LEGS.map(l=>`<div class="rowline" style="gap:10px;padding:11px 0;">
   <div class="mono" style="font-size:9.5px;color:${VERM};flex:0 0 24px;">${l[0]}</div>
   <div style="flex:1;min-width:0;"><div style="font-size:12.5px;font-weight:500;">${l[1]}</div>
@@ -1203,10 +1250,15 @@ function renderMoney(){
   el('rateInput').setAttribute('value', state.rate);
   el('rateInput').value = state.rate;
   el('rateTag').textContent = 'JPY 1 = TWD ' + state.rate;
+  const L = LIVE.fx;
+  el('rateNote').innerHTML = state.rateManual
+    ? '目前是手動匯率 · <a href="#" id="rateAuto" style="color:var(--navy);">改用即時匯率</a>'
+    : (L ? '即時匯率 · ' + L.when + ' 更新（有網路時自動更新）' : '1 JPY → TWD（影響所有換算）· 有網路時自動更新');
+  const ra = el('rateAuto'); if(ra) ra.onclick = ev => { ev.preventDefault(); state.rateManual = false; if(LIVE.fx) state.rate = LIVE.fx.rate; save(); renderMoney(); updateConv(); };
 }
 el('rateInput').oninput = () => {
   const v = parseFloat(el('rateInput').value);
-  if(v > 0 && v < 10){ state.rate = v; save(); renderMoney(); updateConv(); }
+  if(v > 0 && v < 10){ state.rate = v; state.rateManual = true; save(); renderMoney(); updateConv(); }
 };
 el('expList').onclick = e => { const d = e.target.closest('[data-del]'); if(!d) return;
   state.expenses.splice(+d.dataset.del,1); save(); renderMoney(); };
@@ -1599,7 +1651,7 @@ const TODOS=[['住宿已訂：HOTEL ANTEROOM NAHA','樂天旅遊，11/17–11/20
  ['Visit Japan Web 線上入境申報','官方唯一網址 vjw.digital.go.jp，完全免費、無官方 App。'],
  ['預算：每人 15,000 TWD',
  '機票 5,260（2 人 10,520 平分）已定；住宿每人約 2,509（3 晚雙床房總額 NT$5,018）。注意：目前排的餐廳（ぽかぽか、燒肉、目利きの銀次、三頓早餐）加起來每人約 ¥20,000（約 4,200 TWD），比餐飲預算 3,000 多約 1,200；FLAVOR DESIGN ¥4,950 也還沒算進去。HOKA／KEEN 一雙約 3,200–4,200 TWD，建議鞋子另列購物預算。'],
- ['匯率參考','本頁換算採 1 JPY = 0.21 TWD，可在帳目頁調整。'],
+ ['匯率參考','有網路時自動抓即時匯率（open.er-api.com），沒網路就用上次的匯率；也可以在帳目頁手動改。'],
  ['現金預算 ¥30,000','出發前換 ¥30,000 現金，帳目頁「現金」上限就是 ¥30,000。只收現金：巴士（每人整趟約 ¥2,000：11/18 約 ¥300＋¥300，11/19 約 ¥350＋¥500＋¥700）、旅の終わりの朝ごはん、hoppepan，還有港川、壺屋的小店可能只收現金。計程車、大店、Calbee+、機場盡量刷卡。每天出門前看一下錢包：11/19 那天至少留 ¥6,000（巴士、計程車分攤、hoppepan、港川小店）。']];
 el('todos').innerHTML = TODOS.map(t=>`<div class="rowline" style="display:block;padding:10px 0;">
   <div style="font-size:12px;font-weight:500;">${t[0]}</div>
@@ -1620,6 +1672,7 @@ el('extras').innerHTML = XGROUPS.map(([k,label])=>{
 </div>`).join('') : '';
 }).join('');
 renderPlan(); renderMoney(); renderCheck(); renderIC(); renderShop(); renderTabs();
+refreshLive(); window.addEventListener('online', refreshLive); document.addEventListener('visibilitychange', () => { if(document.visibilityState==='visible') refreshLive(); });
 </script>
 
 
